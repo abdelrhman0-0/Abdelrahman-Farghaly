@@ -657,7 +657,7 @@
                 $(sendButton).addClass('btn-progress');
                 $(sendButton).attr('disabled', 'disabled'); //Disable the submit button on click
                 var post_data = form.serialize(); //Serialized the form data
-                var recaptcha = $('#g-recaptcha-response').val();
+                var recaptcha = $('#g-recaptcha').val();
 
                 if (recaptcha === '') {
                     e.preventDefault();
@@ -667,27 +667,29 @@
                 }
 
                 else {
-                    jQuery.support.cors = true;
-                    $.ajax({
-                        type: 'POST',
-                        url: '../../php/mail_handler.php', // Form script
-                        data: post_data,
+                    console.log(form);
+                    // jQuery.support.cors = true;
+                    // $.ajax({
+                    //     type: 'POST',
+                    //     url: 'php/mail_handler.php', // Form script
+                    //     data: post_data,
                         
-                    })
-                        .done(function () {
-                            $(sendButton).removeClass('btn-progress');
-                            notificationPopup('Message Sent. Thanks for your Message, I will contact you soon.');
-                            $(mailForm)[0].reset();
-                            recaptcha.reset();
-                            $(sendButton).removeAttr('disabled', 'disabled'); // Enable submit button
+                    // })
+                    //     .done(function () {
+                    //         $(sendButton).removeClass('btn-progress');
+                    //         notificationPopup('Message Sent. Thanks for your Message, I will contact you soon.');
+                    //         $(mailForm)[0].reset();
+                    //         recaptcha.reset();
+                    //         $(sendButton).removeAttr('disabled', 'disabled'); // Enable submit button
 
-                        })
-                        .fail(function () {
-                            $(sendButton).removeClass('btn-progress').fadeIn(500);
-                            notificationPopup('Sending Failed. Please Try Again');
-                            $(sendButton).removeAttr('disabled', 'disabled'); // Enable submit button
-                        });
+                    //     })
+                    //     .fail(function () {
+                    //         $(sendButton).removeClass('btn-progress').fadeIn(500);
+                    //         notificationPopup('Sending Failed. Please Try Again');
+                    //         $(sendButton).removeAttr('disabled', 'disabled'); // Enable submit button
+                    //     });
                 }
+               // $('input').eq(0).val()
             });
         }
 
